@@ -1,21 +1,61 @@
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.17;
 
-contract Told {
+contract ToldSo {
     struct Post {
         string title;
         string body;
         uint256 timestamp;
     }
 
-    mapping(address => Post[]) private _userToPost;
+    mapping(address => Post[]) private _authorToPosts;
 
-    function createPost(string memory title, string memory content) external {
-        Post memory post = Post(title, content, block.timestamp);
-        _userToPost[msg.sender].push(post);
+    function createPost(string memory title, string memory body) external {
+        Post memory post = Post(title, body, block.timestamp);
+        _authorToPosts[msg.sender].push(post);
     }
 
-    function getPosts(address user) external view returns (Post[] memory) {
-        return _userToPost[user];
+    function getPostsByAuthor(address author)
+        external
+        view
+        returns (Post[] memory)
+    {
+        return _authorToPosts[author];
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // SPDX-License-Identifier: MIT
+// pragma solidity ^0.8.17;
+
+// contract Told {
+//     struct Post {
+//         string title;
+//         string body;
+//         uint256 timestamp;
+//     }
+
+//     mapping(address => Post[]) private authorToPosts;
+
+//     function createPost(string memory title, string memory body) external {
+//         Post memory post = Post(title, content, block.timestamp);
+//         authorToPosts[msg sender] push()
+//     }
+
+//     function getPosts(address user) external view returns (Post[] memory) {
+//         return _userToPost[user];
+//     }
+// }
